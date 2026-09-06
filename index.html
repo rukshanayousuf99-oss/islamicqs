@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইসলামিক প্রশ্নোত্তর — সঠিক দ্বীনি তথ্যের বিশ্বস্ত মাধ্যম</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0d5c3a;
+            --primary-dark: #083e27;
+            --accent: #d4af37;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-dark: #1a252c;
+            --text-muted: #62727d;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.25s ease; }
+        body { font-family: 'Noto Sans Bengali', sans-serif; background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+
+        /* Header Navigation */
+        .top-header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 20px 0; box-shadow: var(--shadow-md); position: sticky; top: 0; z-index: 100; }
+        .header-container { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+        .logo i { font-size: 26px; color: var(--accent); }
+        .logo h1 { font-size: 22px; font-weight: 700; }
+        nav { display: flex; gap: 20px; }
+        nav a { color: rgba(255, 255, 255, 0.85); text-decoration: none; font-size: 14px; font-weight: 500; }
+        nav a:hover { color: var(--accent); }
+
+        /* Container & Ads */
+        .main-container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
+        .ad-slot { background: #eef2f5; border: 1px dashed #cbd5e1; border-radius: var(--radius); padding: 15px; text-align: center; color: var(--text-muted); font-size: 13px; margin: 25px 0; }
+
+        /* Ask Question Box */
+        .ask-box { background: var(--card-bg); border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); margin-bottom: 30px; }
+        .ask-box h2 { font-size: 18px; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        textarea { width: 100%; height: 90px; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; outline: none; margin-bottom: 12px; }
+        textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13, 92, 58, 0.1); }
+        .btn-submit { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 8px; }
+        .btn-submit:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Search Section */
+        .search-wrapper { position: relative; margin-bottom: 25px; }
+        .search-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-input { width: 100%; padding: 12px 15px 12px 42px; border: 1px solid var(--border-color); border-radius: var(--radius); font-size: 15px; background: white; box-shadow: var(--shadow-sm); outline: none; }
+        .search-input:focus { border-color: var(--primary); }
+
+        /* Q&A Cards */
+        .qa-card { background: var(--card-bg); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); margin-bottom: 20px; position: relative; }
+        .qa-card:hover { box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .qa-id { font-size: 13px; font-weight: 600; color: var(--text-muted); background: #f1f5f9; padding: 2px 10px; border-radius: 20px; }
+        .status-badge { font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 20px; }
+        .status-answered { background-color: #d1fae5; color: #065f46; }
+        .status-pending { background-color: #fef3c7; color: #92400e; }
+        .question-title { font-size: 16px; font-weight: 600; color: var(--text-dark); margin-bottom: 12px; }
+        .answer-box { background-color: #f8fafc; border-left: 4px solid var(--primary); padding: 14px 16px; border-radius: 4px 8px 8px 4px; font-size: 14.5px; color: #334155; }
+        .answer-label { font-weight: 600; color: var(--primary); font-size: 13px; text-transform: uppercase; margin-bottom: 4px; display: block; }
+
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; z-index: 1000; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-card { background: white; padding: 30px; border-radius: var(--radius); max-width: 420px; width: 90%; text-align: center; box-shadow: var(--shadow-lg); transform: scale(0.9); }
+        .modal-overlay.active .modal-card { transform: scale(1); }
+        .modal-arabic { font-family: 'Amiri', serif; font-size: 26px; color: var(--primary); margin-bottom: 8px; }
+        .modal-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+
+        /* Footer */
+        footer { background: var(--primary-dark); color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 3px solid var(--accent); }
+        footer p { font-size: 13px; color: #94a3b8; }
+        .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 15px; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; font-size: 13px; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .loading { text-align: center; padding: 30px; color: var(--text-muted); font-size: 15px; }
+
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; align-items: flex-start; }
+            nav { width: 100%; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="top-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-kaaba"></i>
+                <h1>ইসলামিক প্রশ্নোত্তর</h1>
+            </a>
+            <nav>
+                <a href="#">হোম</a>
+                <a href="#">আমাদের সম্পর্কে</a>
+                <a href="#">প্রাইভেসী পলিসি</a>
+                <a href="#">যোগাযোগ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- Top Ad Banner -->
+        <div class="ad-slot">
+            <i class="fa-regular fa-rectangle-ad"></i> বিজ্ঞাপন স্থান (Top Banner Ad)
+        </div>
+
+        <!-- Submit Question Box -->
+        <div class="ask-box">
+            <h2><i class="fa-solid fa-pen-to-square"></i> আপনার প্রশ্ন জমা দিন</h2>
+            <textarea id="questionInput" placeholder="আপনার প্রশ্নটি বিস্তারিত লিখুন... (যেমন: সালাত আদায়ের সঠিক নিয়ম কী?)"></textarea>
+            <button class="btn-submit" id="submitBtn" onclick="handleQuestionSubmit()">
+                <i class="fa-solid fa-paper-plane"></i> সাবমিট করুন
+            </button>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" class="search-input" onkeyup="filterQA()" placeholder="প্রশ্ন বা কিওয়ার্ড দিয়ে খুঁজুন...">
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <i class="fa-solid fa-spinner fa-spin"></i> গুগল শিট থেকে তথ্য লোড হচ্ছে...
+        </div>
+
+        <!-- Q&A Feed Section -->
+        <div id="qaFeed"></div>
+
+        <!-- Bottom Ad Banner -->
+        <div class="ad-slot">
+            <i class="fa-regular fa-rectangle-ad"></i> বিজ্ঞাপন স্থান (Bottom Ad)
+        </div>
+
+    </div>
+
+    <!-- Success Pop-up Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <div class="modal-arabic">جَزَاكَ ٱللَّٰهُ خَيْرًا</div>
+            <h3>প্রশ্নটি গ্রহণ করা হয়েছে</h3>
+            <p>আপনার প্রশ্নটি আমাদের ডেটাবেজে জমা হয়েছে। আমরা শীঘ্রই এর সঠিক উত্তর প্রকাশ করবো ইনশাআল্লাহ।</p>
+            <button class="btn-submit" style="width: 100%; justify-content: center;" onclick="closeModal()">ঠিক আছে</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; ২০২৬ ইসলামিক প্রশ্নোত্তর। সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="footer-links">
+            <a href="#">আমাদের সম্পর্কে</a> • 
+            <a href="#">গোপনীয়তা নীতি</a> • 
+            <a href="#">ব্যবহারের শর্তাবলী</a>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // আপনার নতুন প্রদান করা গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyK0HG6MXS_tXYfLQhhQ4D4uuyQXWTG2kfgz7es0DqOAV16sahBPE_NSd4x8sTmE1ZXtg/exec';
+
+        let allQAData = [];
+
+        // শিট থেকে সরাসরি ডাটা লোড করা
+        async function loadQAData() {
+            try {
+                const response = await fetch(API_URL);
+                allQAData = await response.json();
+
+                document.getElementById('loading').style.display = 'none';
+                displayQA(allQAData);
+            } catch (error) {
+                document.getElementById('loading').innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:red;"></i> তথ্য লোড করতে সমস্যা হয়েছে।';
+            }
+        }
+
+        // স্ক্রিনে প্রশ্ন ও উত্তর প্রদর্শন
+        function displayQA(data) {
+            const feed = document.getElementById('qaFeed');
+            feed.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                feed.innerHTML = '<div style="text-align:center; padding: 20px; color: #666;">কোনো প্রশ্ন পাওয়া যায়নি।</div>';
+                return;
+            }
+
+            // নতুন প্রশ্নগুলো সবসময় উপরে থাকবে
+            data.slice().reverse().forEach((item, index) => {
+                const hasAnswer = item.answer && String(item.answer).trim() !== "";
+                const badgeClass = hasAnswer ? 'status-answered' : 'status-pending';
+                const badgeIcon = hasAnswer ? 'fa-circle-check' : 'fa-clock';
+                const badgeText = hasAnswer ? 'উত্তর দেওয়া হয়েছে' : 'পেন্ডিং';
+
+                const cardHTML = `
+                    <div class="qa-card">
+                        <div class="card-header">
+                            <span class="qa-id">প্রশ্ন #${item.id || (data.length - index)}</span>
+                            <span class="status-badge ${badgeClass}"><i class="fa-solid ${badgeIcon}"></i> ${badgeText}</span>
+                        </div>
+                        <div class="question-title">প্রশ্ন: ${item.question || ''}</div>
+                        ${hasAnswer ? `
+                            <div class="answer-box">
+                                <span class="answer-label">উত্তর:</span>
+                                <p>${item.answer}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                feed.innerHTML += cardHTML;
+            });
+        }
+
+        // গুগল শিটে নতুন প্রশ্ন জমা দেওয়া
+        async function handleQuestionSubmit() {
+            const input = document.getElementById('questionInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const qText = input.value.trim();
+
+            if (qText === '') {
+                alert('অনুগ্রহ করে আপনার প্রশ্নটি লিখুন।');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: qText })
+                });
+
+                document.getElementById('successModal').classList.add('active');
+                input.value = '';
+
+                // ১.৫ সেকেন্ড পর আবার ডাটা ফেচ করে ফ্রন্টএন্ডে রিলোড করবে
+                setTimeout(() => {
+                    loadQAData();
+                }, 1500);
+
+            } catch (err) {
+                alert('প্রশ্ন জমা দিতে সমস্যা হয়েছে, অনুগ্রহ করে আবার চেষ্টা করুন।');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> সাবমিট করুন';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // সার্চ করার ফিল্টার
+        function filterQA() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allQAData.filter(item => 
+                (item.question && String(item.question).toLowerCase().includes(query)) ||
+                (item.answer && String(item.answer).toLowerCase().includes(query))
+            );
+            displayQA(filtered);
+        }
+
+        // পেজ লোড হওয়া মাত্রই রান হবে
+        loadQAData();
+    </script>
+</body>
+</html>
